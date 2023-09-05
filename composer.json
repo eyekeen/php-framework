@@ -1,0 +1,7 @@
+{
+    "name": "tarum/framework",
+    "description": "simple framework",
+    "require-dev": {
+        "larapack/dd": "^1.1"
+    }
+}
