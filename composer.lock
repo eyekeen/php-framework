@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ad3cdc0309dca475d5733f4590ace70",
-    "packages": [],
+    "content-hash": "dbd420f4d0606b96bd466dc320ec410e",
+    "packages": [
+        {
+            "name": "codin/dot",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codin/dot-notation.git",
+                "reference": "e77839a3518519c22981fe299c16ada655b9aa47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codin/dot-notation/zipball/e77839a3518519c22981fe299c16ada655b9aa47",
+                "reference": "e77839a3518519c22981fe299c16ada655b9aa47",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "friends-of-phpspec/phpspec-code-coverage": "@stable",
+                "friendsofphp/php-cs-fixer": "@stable",
+                "phpspec/phpspec": "@stable",
+                "phpstan/phpstan": "@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codin\\Dot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kieron",
+                    "email": "hello@madebykieron.co.uk",
+                    "homepage": "http://madebykieron.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dot Notation Array Access",
+            "support": {
+                "issues": "https://github.com/codin/dot-notation/issues",
+                "source": "https://github.com/codin/dot-notation/tree/0.1.2"
+            },
+            "time": "2022-03-22T04:12:09+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "larapack/dd",

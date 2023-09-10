@@ -6,7 +6,7 @@ use App\Application\Views\View;
 
 class PagesController{
     public function home() : void {
-        View::show("pages/home");
+        View::show("pages/hom1e");
     }
 
     public function about() : void {

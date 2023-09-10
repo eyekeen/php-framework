@@ -14,5 +14,8 @@
         "psr-4": {
             "App\\": "app/"
         }
+    },
+    "require": {
+        "codin/dot": "^0.1.2"
     }
 }
