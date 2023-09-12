@@ -3,13 +3,19 @@
 namespace App\Application\Views;
 
 use App\Application\Config\Config;
+use App\Exceptions\ComponentNotFoundException;
 use App\Exceptions\ViewNotFoundException;
 
 class View implements ViewInterface
 {
-    public static function show(string $view): void
+
+     /**
+     * @throws ViewNotFoundException
+     */
+    public static function show(string $view, array $params): void
     {
 
+        extract($params);
         $path = __DIR__ . "/../../../views/$view.view.php";
 
         if (!file_exists($path)) {
@@ -19,6 +25,7 @@ class View implements ViewInterface
         include $path;
     }
 
+    
     public static function exception(\Exception $e): void
     {
 
@@ -35,6 +42,20 @@ class View implements ViewInterface
             echo $e->getMessage(), "<br /><hr />";
             echo "<pre>{$e->getTraceAsString()}</pre>";
             die();
+        }
+
+        include $path;
+    }
+
+    /**
+     * @throws ComponentNotFoundException
+     */
+    public static function component(string $component): void
+    {
+        $path = __DIR__ . "/../../../views/components/$component.component.php";
+
+        if (!file_exists($path)) {
+            throw new ComponentNotFoundException("Component ($component) not found");
         }
 
         include $path;

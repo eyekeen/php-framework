@@ -1,16 +1,20 @@
+<?php
+
+use App\Application\Views\View;
+use App\Application\Config\Config;
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= Config::get('app.lang') ?>">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-
-    <title>About page</title>
+    <?php View::component('head'); ?>
+    <title><?= $title ?></title>
 </head>
 
 <body>
+    <?php View::component('nav'); ?>
     <main>
         <div class="container">
             <div class="row mt-3">
@@ -18,6 +22,7 @@
             </div>
         </div>
     </main>
+    <?php View::component('scripts'); ?>
 </body>
 
 </html>

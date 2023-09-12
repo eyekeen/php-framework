@@ -7,6 +7,7 @@ use App\Application\Router\Route;
 use App\Application\Router\Router;
 use App\Exceptions\ViewNotFoundException;
 use App\Application\Views\View;
+use App\Exceptions\ComponentNotFoundException;
 
 class App
 {
@@ -14,7 +15,7 @@ class App
     {
         try {
             $this->handle();
-        } catch (ViewNotFoundException $e) {
+        } catch (ViewNotFoundException|ComponentNotFoundException $e) {
             View::exception($e);
         }
     }
