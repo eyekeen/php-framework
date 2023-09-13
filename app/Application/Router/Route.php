@@ -11,10 +11,22 @@ class Route implements RouteInterface // class Route need for accumulate our rou
     {
         self::$routes[] = [
             'uri' => $uri,
+            'type' => 'page',
             'controller' => $controller,
             'method' => $method,
         ];
     }
+
+    public static function post(string $uri, string $controller, string $method): void
+    {
+        self::$routes[] = [
+            'uri' => $uri,
+            'type' => 'post',
+            'controller' => $controller,
+            'method' => $method,
+        ];
+    }
+
 
     public static function list(): array
     {

@@ -24,6 +24,7 @@ class App
     {
         Config::init();
 
+        require_once __DIR__ . '/../routes/actions.php';
         require_once __DIR__ . '/../routes/pages.php';
         $router = new Router();
         $router->handle(Route::list());
