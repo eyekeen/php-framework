@@ -15,11 +15,13 @@ class Router implements RouterInterface // for handling our routes
         $type = $requestMethod === 'POST' ? 'post' : 'page';
         $filteredRoutes = self::filter($routes, $type);
 
-        // dd($filteredRoutes);
-
         foreach ($filteredRoutes as $route) {
-            self::controller($route);
+            if($route['uri'] === $uri){
+                self::controller($route);    
+            }
         }
+        
+        
 
     }
 }

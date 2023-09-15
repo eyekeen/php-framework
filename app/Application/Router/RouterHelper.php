@@ -2,21 +2,22 @@
 
 namespace App\Application\Router;
 
+trait RouterHelper {
 
-trait RouterHelper
-{
-    protected static function filter(array $routes, string $type): array
-    {
+    protected static function filter(array $routes, string $type): array {
         return array_filter($routes, function ($route) use ($type) {
             return $route['type'] === $type;
         });
     }
 
-    protected static function controller(array $route)
-    {
+    protected static function controller(array $route) {
         $controller = new $route['controller']();
         $method = $route['method'];
-        $controller->$method();
+        if (!empty($_POST)) {
+            $controller->$method($_POST);
+        } else {
+            $controller->$method();
+        }
         return;
     }
 }

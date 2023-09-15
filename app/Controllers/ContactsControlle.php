@@ -6,9 +6,9 @@ use App\Application\Views\View;
 
 class ContactsControlle
 {
-    public function submit(): void
+    public function submit(array $data): void
     {
-        die('test123');
+        dd($data);
     }
 
 }
