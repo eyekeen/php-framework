@@ -19,11 +19,11 @@ use App\Application\Config\Config;
                     <form action="/contacts" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" value="test@mail.ru" id="email" class="form-control" placeholder="name@example.com">
+                            <input type="email" name="email" value="test@mail.ru" id="email" class="form-control" placeholder="name@example.com">
                         </div>
                         <div class="mb-3">
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" value="some subject" class="form-control" name="subjec" id="subjec">
+                            <input type="text" value="some subject" class="form-control" name="subject" id="subjec">
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
