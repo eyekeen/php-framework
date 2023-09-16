@@ -9,12 +9,12 @@ class ContactsControlle
 {
     public function submit(array $data): void
     {
-
         $report = new Report();
         $report->setEmail($data['email']);
         $report->setSubject($data['subject']);
         $report->setMessage(trim($data['message']));
-        dd($report);
+        
+        $report->store();
     }
 
 }

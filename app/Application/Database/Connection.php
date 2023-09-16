@@ -23,7 +23,7 @@ class Connection implements ConnectionInterface {
     }
 
     public function connect(): \PDO {
-        return new \PDO("{$this->host}:host={$this->host};port={$this->port};dbname={$this->dbname}",
+        return new \PDO("$this->driver:host=$this->host;port=$this->port;dbname=$this->dbname",
                 $this->user,
                 $this->password);
     }

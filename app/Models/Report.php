@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-class Report {
+use App\Application\Database\Model;
 
-    protected int $id;
+class Report extends Model {
+
+    protected array $fields = ['email', 'subject', 'message'];
     protected string $email;
     protected string $subject;
     protected string $message;
-    protected string $created_at;
-    protected string $updated_at;
 
     public function setEmail(string $email): void {
         $this->email = $email;
@@ -34,9 +34,4 @@ class Report {
     public function getMessage(): string {
         return $this->message;
     }
-    
-    public function store() {
-        
-    }
-    
 }
