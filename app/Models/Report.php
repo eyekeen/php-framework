@@ -6,6 +6,7 @@ use App\Application\Database\Model;
 
 class Report extends Model {
 
+    protected string $table = 'reports';
     protected array $fields = ['email', 'subject', 'message'];
     protected string $email;
     protected string $subject;

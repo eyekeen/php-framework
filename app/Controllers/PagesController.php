@@ -26,4 +26,18 @@ class PagesController
             'title' => 'Contacts',
         ]);
     }
+    
+    public function login(): void
+    {
+        View::show("pages/login", [
+            'title' => 'Login',
+        ]);
+    }
+    
+    public function register(): void
+    {
+        View::show("pages/register", [
+            'title' => 'Register',
+        ]);
+    }
 }

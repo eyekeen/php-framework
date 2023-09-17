@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Application\Views\View;
 use App\Models\Report;
+use App\Application\Router\Redirect;
 
 class ContactsControlle
 {
@@ -15,6 +16,8 @@ class ContactsControlle
         $report->setMessage(trim($data['message']));
         
         $report->store();
+
+        Redirect::to('/contacts');
     }
 
 }
