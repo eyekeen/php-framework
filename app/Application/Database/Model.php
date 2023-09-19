@@ -2,7 +2,7 @@
 
 namespace App\Application\Database;
 
-class Model extends Connection {
+class Model extends Connection implements ModelInterface {
 
     protected int $id;
     protected string $created_at;
@@ -10,6 +10,13 @@ class Model extends Connection {
     protected array $fields = [];
     protected string $table;
 
+    public static function find(array $params, int $limit = 1): ?array {
+        
+        $query = "SELECT * FROM `$this->table` WHERE `id` = :id";
+    }
+    
+    
+    
     public function store() {
 
         $columns = implode(', ', array_map(function ($field) {

@@ -1,7 +1,13 @@
+<?php
+
+use App\Application\Views\View;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once __DIR__ . '/../components/head.php' ?>
+    <?php View::component('head'); ?>
     <title>Error</title>
 </head>
 <style>
@@ -21,5 +27,6 @@
     <div class="alert alert-secondary" role="alert">
         <pre><?= $trace ?></pre>
     </div>
+    
 </body>
 </html>

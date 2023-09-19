@@ -4,7 +4,7 @@ namespace App\Application\Database;
 
 use App\Application\Config\Config;
 
-class Connection implements ConnectionInterface {
+abstract class Connection implements ConnectionInterface {
 
     private string $driver;
     private string $host;

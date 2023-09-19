@@ -20,7 +20,7 @@ use App\Application\Config\Config;
                     <h3>Login</h3>
                 </div>
                 <div class="row mt-3">
-                    <form action="/contacts" method="post">
+                    <form action="/login" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="name@example.com">

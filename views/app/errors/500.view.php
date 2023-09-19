@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>404 - Page not found</title>
+        <title>500 - Server error</title>
     </head>
     <style>
         body{
@@ -16,6 +16,6 @@
         }
     </style>
     <body>
-        <h1>404 <br /> <hr> Page not found</h1>
+        <h1>500 <br /> <hr> Server error</h1>
     </body>
 </html>
