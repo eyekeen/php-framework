@@ -10,14 +10,21 @@ class Model extends Connection implements ModelInterface {
     protected array $fields = [];
     protected string $table;
 
-    public static function find(array $params, int $limit = 1): ?array {
+    public function find(string $column, mixed $value, bool $many= false): array|bool {
+        $query = "SELECT * FROM `" . $this->getTable() . "` WHERE `$column` = :$column";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute([
+            $column => $value
+        ]);
         
-        $query = "SELECT * FROM `$this->table` WHERE `id` = :id";
+        return $many ? $stmt->fetchAll(\PDO::FETCH_ASSOC) : $stmt->fetch(\PDO::FETCH_ASSOC);
     }
-    
-    
-    
-    public function store() {
+
+    private function getTable(): string {
+        return $this->table;
+    }
+
+    public function store(): void {
 
         $columns = implode(', ', array_map(function ($field) {
                     return "`$field`";
@@ -30,10 +37,8 @@ class Model extends Connection implements ModelInterface {
         $query = "insert into `$this->table` ($columns)
             values ($binds)";
 
-
         $stmt = $this->connect()->prepare($query);
-        
- 
+
         foreach ($this->fields as $field) {
             $params[$field] = $this->$field;
         }

@@ -21,6 +21,7 @@ class UserController {
     }
 
     public function login(Request $request) {
-        
+        $user = new User();
+        dd($user->find('email', 'wopedela@mailinator.com'));
     }
 }
