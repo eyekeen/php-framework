@@ -7,17 +7,31 @@ class Model extends Connection implements ModelInterface {
     protected int $id;
     protected string $created_at;
     protected string $updated_at;
+    
     protected array $fields = [];
     protected string $table;
+    protected array $collection = [];
 
-    public function find(string $column, mixed $value, bool $many= false): array|bool {
+    public function find(string $column, mixed $value, bool $many= false): array|bool|Model {
         $query = "SELECT * FROM `" . $this->getTable() . "` WHERE `$column` = :$column";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute([
             $column => $value
         ]);
         
-        return $many ? $stmt->fetchAll(\PDO::FETCH_ASSOC) : $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($many){
+            $this->collection = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $this->collection;
+        } else {
+            $entity = $stmt->fetch(\PDO::FETCH_ASSOC);
+           
+            foreach ($entity as $key => $value) {
+                $this->$key = $value;
+            }
+            
+            return $this;
+        }
+        
     }
 
     private function getTable(): string {
@@ -44,5 +58,25 @@ class Model extends Connection implements ModelInterface {
         }
 
         $stmt->execute($params);
+    }
+
+    public function update(array $data): void {
+        
+        $keys = array_keys($data);
+        
+        $fields = array_map(function($item){
+            return  "`$item` = :$item";
+        }, $keys);
+        
+        $updatedFields = implode(',', $fields);
+        
+        $query = "UPDATE `$this->table` SET $updatedFields WHERE `users`.`id` = :id";
+        
+        $stmt = $this->connect()->prepare($query);
+        
+        $data['id'] = $this->id;
+        
+        $stmt->execute($data);
+
     }
 }

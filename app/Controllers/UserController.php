@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Application\Request\Request;
 use App\Application\Router\Redirect;
+use App\Application\Helpers\Random;
 
 class UserController {
 
@@ -21,7 +22,17 @@ class UserController {
     }
 
     public function login(Request $request) {
-        $user = new User();
-        dd($user->find('email', 'wopedela@mailinator.com'));
+        $user = (new User())->find('email', $request->post('email'));
+
+        if ($user) {
+            if (password_verify($request->post('password'), $user->getPassword())) {
+//                dd(Random::str(50));
+                dd($user->update(['token' => Random::str(50)]));
+            } else {
+                dd('Incorrect password');
+            }
+        } else {
+            dd('User not found');
+        }
     }
 }
