@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Application\Request\Request;
 use App\Application\Router\Redirect;
 use App\Application\Helpers\Random;
+use App\Application\Auth\Auth;
 
 class UserController {
 
@@ -26,10 +27,13 @@ class UserController {
 
         if ($user) {
             if (password_verify($request->post('password'), $user->getPassword())) {
-//                dd(Random::str(50));
-                dd($user->update(['token' => Random::str(50)]));
+                $token = Random::str(50);
+                $user->update(['token' => $token]);
+                setcookie(Auth::getTokenColumn(), $token);
+                Redirect::to('/login');
             } else {
-                dd('Incorrect password');
+                // TODO: add error message
+                Redirect::to('/login');
             }
         } else {
             dd('User not found');
