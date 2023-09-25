@@ -10,14 +10,14 @@ class Auth implements AuthInterface {
 
     protected static $model;
     protected static $user;
-    protected static string|null $token;
+    protected static ?string $token;
     protected static string $tokenColumn;
 
     public static function init(): void {
         $model = Config::get('auth.model');
         self::$tokenColumn = Config::get('auth.token_column');
         self::$model = new $model();
-        
+
         self::$token = $_COOKIE[self::$tokenColumn] ?? NULL;
     }
 
@@ -28,7 +28,7 @@ class Auth implements AuthInterface {
         return (bool) self::$user;
     }
 
-    public static function user(): array {
+    public static function user(): User {
 
         return self::$user ?? self::$model->find(self::$tokenColumn, self::$token);
     }

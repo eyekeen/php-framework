@@ -7,13 +7,14 @@ class Route implements RouteInterface // class Route need for accumulate our rou
 {
     private static array $routes = [];
 
-    public static function page(string $uri, string $controller, string $method): void
+    public static function page(string $uri, string $controller, string $method, string|array $middleware = []): void
     {
         self::$routes[] = [
             'uri' => $uri,
             'type' => 'page',
             'controller' => $controller,
             'method' => $method,
+            'middleware' => $middleware,
         ];
     }
 

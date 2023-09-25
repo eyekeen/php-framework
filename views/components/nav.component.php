@@ -1,3 +1,8 @@
+<?php
+
+use App\Application\Auth\Auth;
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/home">Framework</a>
@@ -15,17 +20,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contacts">Contacts</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
+                <?php if (!Auth::check()) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                <?php } ?>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <?php if (Auth::check()) { ?>
+                <form action="/logout" method="post" class="d-flex" role="search">
+                    <button class="btn btn-outline-danger" type="submit">Logout</button>
+                </form>
+            <?php } ?>
         </div>
     </div>
 </nav>
